@@ -5,8 +5,8 @@ from .models import CustomUser
 class RegisterForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email')
+        fields = ('email',)
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
+    email = forms.EmailField(max_length=254, label="Email")
     password = forms.CharField(widget=forms.PasswordInput)

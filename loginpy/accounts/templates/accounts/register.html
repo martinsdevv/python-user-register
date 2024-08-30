@@ -1,15 +1,77 @@
-<!-- templates/accounts/register.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+{% extends 'custom-base.html' %}
+
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block body %}
+    <body class="bg-white">
+{% endblock %}
+
+{% block content %}
+<div class="row authentication authentication-cover-main mx-0">
+    <div class="col-xxl-5 col-xl-5 col-lg-12 d-xl-block d-none px-0">
+        <div class="authentication-cover overflow-hidden">
+            <div class="authentication-cover-logo"> 
+                <a href="{% url 'main' %}"> 
+                    <img src="{% static 'assets/images/brand-logos/desktop-dark.png' %}" alt="" class="authentication-brand desktop-dark"> 
+                </a> 
+            </div>
+            <div class="aunthentication-cover-content d-flex align-items-center justify-content-center">
+                <div>
+                    <h2 class="fs-1 text-fixed-white lh-base">Keys to the kingdom, once a time</h2>
+                    <p class="mb-0 fs-18 lh-base text-fixed-white op-8">This succinct quote playfully emphasizes the significance of each login, framing it as a step toward accessing a digital kingdom of possibilities</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-7 col-xl-7">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-xxl-6 col-xl-9 col-lg-6 col-md-6 col-sm-8 col-12">
+                <div class="card custom-card shadow-none my-auto border-0">
+    <div class="card-body p-5">
+        <p class="h4 mb-2 fw-semibold">Sign Up</p>
+        <p class="mb-4 text-muted">Join us by creating a free account!</p>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="row gy-3">
+                <div class="col-xl-12">
+                    <label for="signup-email" class="form-label text-default">Email Address</label>
+                    <input type="email" class="form-control form-control-lg" id="signup-email" name="email" placeholder="Enter Email ID" required>
+                </div>
+                <div class="col-xl-12">
+                    <label for="signup-password" class="form-label text-default">Password</label>
+                    <div class="position-relative">
+                        <input type="password" class="form-control form-control-lg" id="signup-password" name="password1" placeholder="Password" required>
+                        <a href="javascript:void(0);" class="show-password-button text-muted" onclick="createpassword('signup-password',this)" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label for="signup-password2" class="form-label text-default">Confirm Password</label>
+                    <input type="password" class="form-control form-control-lg" id="signup-password2" name="password2" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-lg btn-primary">Create Account</button>
+            </div>
+        </form>
+        <div class="text-center">
+            <p class="text-muted mt-3 mb-0">Already have an account? 
+                <a href="{% url 'login' %}" class="text-primary fw-medium">Sign In</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Show Password JS -->
+    <script src="{% static 'assets/js/show-password.js' %}"></script>
+{% endblock %}
